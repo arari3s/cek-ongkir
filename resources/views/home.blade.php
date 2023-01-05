@@ -80,7 +80,7 @@
                             <h5 class="text-muted">Tujuan Pengirim:</h5>
                             <div class="form-group">
                                 <label for="">Kota/Kabupaten</label>
-                                <select name="destination_city" id="" class="form-control">
+                                <select name="destination_city" id="destination_city" class="form-control">
                                     <option value="#">-</option>
                                 </select>
                             </div>
@@ -89,12 +89,12 @@
                         <div class="col">
                             <h5 class="text-muted">Pilih Ekspedisi:</h5>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option">
                                 <label class="form-check-label" for="inlineCheckbox1">JNE</label>
                             </div>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option">
                                 <label class="form-check-label" for="inlineCheckbox2">TIKI</label>
                             </div>
                         </div>

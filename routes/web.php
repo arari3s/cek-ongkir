@@ -23,3 +23,4 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/api/province/{id}/cities', [HomeController::class, 'getCities']);
+Route::post('/api/cities', [HomeController::class, 'searchCities']);
