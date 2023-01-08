@@ -38,21 +38,28 @@ class HomeController extends Controller
         $couriers = $request->input('courier');
 
         if ($couriers) {
-            $result = [];
+            $data = [
+                'origin'        => $this->getCity($request->origin_city),
+                'destination'   => $this->getCity($request->destination_city),
+                'weight'        => 1300,
+                'result'        => []
+            ];
 
             foreach ($couriers as $courier) {
                 $ongkir =  RajaOngkir::ongkosKirim([
-                    'origin'        => $request->origin_city,     // ID kota/kabupaten asal
-                    'destination'   => $request->destination_city,      // ID kota/kabupaten tujuan
-                    'weight'        => 1300,    // berat barang dalam gram
-                    'courier'       => $request->courier[0]    // kode kurir pengiriman: ['jne', 'tiki', 'pos'] untuk starter
+                    'origin'        => $data['origin'],         // ID kota/kabupaten asal
+                    'destination'   => $data['destination'],    // ID kota/kabupaten tujuan
+                    'weight'        => $data['weight'],         // berat barang dalam gram
+                    'courier'       => $courier                 // kode kurir pengiriman: ['jne', 'tiki', 'pos'] untuk starter
                 ])->get();
 
-                $result[] = $ongkir;
+                $data['result'][] = $ongkir;
             }
+
+            return view('costs')->with($data);
         }
 
-        return $result;
+        return redirect()->back();
     }
 
     public function getCourier()
@@ -63,6 +70,11 @@ class HomeController extends Controller
     public function getProvince()
     {
         return Province::pluck('title', 'code');
+    }
+
+    public function getCity($code)
+    {
+        return City::where('code', $code)->first();
     }
 
     public function getCities($id)
